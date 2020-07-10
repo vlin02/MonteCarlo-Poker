@@ -106,34 +106,23 @@ vector<int> Simulator::simulate(vector<int> &selection, vector<vector<int>> &kno
     }
 
     int opp_max_val = 0;
+    int opp_max = 0;
 
-    for (int i = start; i < sample.size(); i += 2){
-        selection[5] = sample[i];
-        selection[6] = sample[i + 1];
+    for (int i = 0; start + i * 2 < sample.size(); i ++){
+        selection[5] = sample[start + i * 2];
+        selection[6] = sample[start + 1 + i * 2];
 
-        opp_max_val = max(evaluate_selection(selection), opp_max_val);
+        update_winners(evaluate_selection(selection), max_val, known_hands.size() + i, winners);
     }
-    
-    update_winners(opp_max_val, max_val, known_hands.size(), winners);
 
     return winners;
 }
 
-vector<vector<int>> Simulator::compute_probabilities(int N, vector<string> comm_hand_str, vector<vector<string>> known_hands_str, int players_unknown){
-
-    vector<int> comm_hand = convert_hand(comm_hand_str);
-    
-    vector<vector<int>> known_hands;
-
-    for (vector<string> known_hand_str : known_hands_str) {
-        known_hands.push_back(convert_hand(known_hand_str));
-    }
-
-    clock_t start = clock();
+vector<vector<int>> Simulator::calculate(int N, vector<int>comm_hand, vector<vector<int>>known_hands, int players_unknown){
 
     vector<vector<int>> samples = fill_empty(N, comm_hand, known_hands, players_unknown);
     vector<int> selection(7);
-    vector<vector<int>> results(known_hands.size() + 1, vector<int>(2, 0));
+    vector<vector<int>> results(known_hands.size() + players_unknown, vector<int>(2, 0));
 
     for (int i = 0; i < comm_hand.size(); ++i){
         selection[i] = comm_hand[i];
@@ -160,27 +149,53 @@ vector<vector<int>> Simulator::compute_probabilities(int N, vector<string> comm_
         }
     }
 
+    return results;
+}
+
+void Simulator::print_results(int N, vector<vector<int>> hands, vector<vector<int>> results) {
+    float known_wins = 0;
+    for (int i = 0; i < hands.size(); i++) {
+        print_hand(hands[i]);
+        format_result(N, results[i]);
+        known_wins += results[i][0];
+    }
+
+    int unknown = results.size() - hands.size();
+
+    if (unknown > 0) {
+        float ties = 0;
+        for (int i=hands.size(); i < results.size(); i++){
+            ties += results[i][1];
+        }
+
+        printf("?? ?? %6.3f  %6.3f (x%d random hands)\n", (N - known_wins)*100/N/unknown, ties*100/N/unknown, unknown);
+    }
+}
+
+void Simulator::format_result(int N, vector<int> result) {
+    printf("%6.3f  %6.3f\n", result[0]*100.0/N, result[1]*100.0/N);
+}
+
+vector<vector<int>> Simulator::compute_probabilities(int N, vector<string> comm_hand_str, vector<vector<string>> known_hands_str, int players_unknown){
+
+    clock_t start = clock();
+    
+    vector<int> comm_hand = convert_hand(comm_hand_str);
+    
+    vector<vector<int>> known_hands;
+
+    for (vector<string> known_hand_str : known_hands_str) {
+        known_hands.push_back(convert_hand(known_hand_str));
+    }
+
+    vector<vector<int>> results = calculate(N, comm_hand, known_hands, players_unknown);
+
     cout << "\nHand   Win %   Tie %\n" << endl;
     print_results(N, known_hands, results);
 
     clock_t stop = clock();
     double elapsed = (double)(stop - start) / CLOCKS_PER_SEC;
     printf("\nTime elapsed: %.5fs\n", elapsed);
+
     return results;
-}
-
-void Simulator::print_results(int N, vector<vector<int>> hands, vector<vector<int>> results) {
-    for (int i = 0; i < hands.size(); i++) {
-        print_hand(hands[i]);
-        format_result(N, results[i]);
-    }
-
-    if (results.size() == hands.size() + 1) {
-        cout << "?? ?? ";
-        format_result(N, results.back());
-    }
-}
-
-void Simulator::format_result(int N, vector<int> result) {
-    printf("%6.3f  %6.3f\n", result[0]*100.0/N, result[1]*100.0/N);
 }

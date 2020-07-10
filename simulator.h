@@ -25,6 +25,7 @@ public:
     vector<int> simulate(vector<int> &selection, vector<vector<int>> &known_hands, vector<int> &sample, int start);
     vector<vector<int>> compute_probabilities(int N, vector<string> comm_hand_str, vector<vector<string>> known_hands_str, int players_unknown);
     void print_results(int N, vector<vector<int>> hands, vector<vector<int>> results);
+    vector<vector<int>> calculate(int N, vector<int>comm_hand, vector<vector<int>>known_hands, int players_unknown);
 };
 
 #endif

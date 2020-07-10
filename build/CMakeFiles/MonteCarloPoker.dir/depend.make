@@ -6,9 +6,7 @@ CMakeFiles/MonteCarloPoker.dir/cards.cpp.o: ../cards.h
 
 CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../cards.h
 CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../main.cpp
-CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../samples.h
 CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../simulator.h
-CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../tables.h
 CMakeFiles/MonteCarloPoker.dir/main.cpp.o: ../tools.h
 
 CMakeFiles/MonteCarloPoker.dir/samples.cpp.o: ../samples.cpp
