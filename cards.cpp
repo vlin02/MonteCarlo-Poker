@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,16 +15,30 @@ vector<string> hands = {"HIGH CARD", "ONE PAIR", "TWO PAIR", "THREE OF A KIND", 
 
 vector<string> val = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 
-vector<string> suit = {"♣️", "♦️", "♥️", "♠️"};
+vector<string> suit = {"c", "d", "h", "s"};
+vector<string> suit_stylized = {"♣", "♦", "♥", "♠"};
+
 
 string card_string(int ix) {
-    return val[ix % 13] + suit[ix / 13];
+    return val[ix % 13] + suit_stylized[ix / 13];
 }
 
-vector<int> convert_hand(vector<int> &s_hand) {
+int get_index(vector<string> &vec, string key) {
+    auto it = find(vec.begin(), vec.end(), key); 
+
+    return (it != vec.end() ? it - vec.begin() : -1);
+}
+
+int decode_card(string card){
+    int val_ix = get_index(val, card.substr(0, card.size()-1));
+    int suit_ix = get_index(suit, card.substr(card.size()-1, card.size()));
+    return (val_ix != -1 && suit_ix != -1) ? suit_ix * 13 + val_ix : -1;
+}
+
+vector<int> convert_hand(vector<string> &s_hand) {
     vector<int> hand;
-    for (int card : s_hand) {
-        hand.push_back(13 * ((card % 10) - 1) + card / 10 - 2);
+    for (string card : s_hand) {
+        hand.push_back(decode_card(card));
     }
     sort(hand.begin(), hand.end());
 

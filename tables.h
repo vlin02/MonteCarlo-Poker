@@ -5,7 +5,6 @@
 #ifndef TABLES_H
 #define TABLES_H
 #include <vector>
-#include "sparsepp/spp.h"
 using namespace std;
 
 int evaluate(const vector<int> &hand1);

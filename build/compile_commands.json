@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/main.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/main.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/main.cpp"
+},
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/samples.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.cpp"
+},
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/simulator.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.cpp"
+},
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/tables.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tables.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tables.cpp"
+},
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/tools.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.cpp"
+},
+{
+  "directory": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/build",
+  "command": "/usr/bin/clang++    -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu++17 -o CMakeFiles/MonteCarloPoker.dir/cards.cpp.o -c /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.cpp",
+  "file": "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.cpp"
+}
+]

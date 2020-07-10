@@ -1,4 +1,6 @@
 cmake-build-debug
 archive
 .idea
+.vscode
+.history
 **/.DS_Store

@@ -5,9 +5,10 @@
 #include "samples.h"
 #include <vector>
 #include <random>
+#include <algorithm>
 
 using namespace std;
-// shuffled sequence containing integers 0, 1, ..., n-1 each N times
+// shuffled sequence containing integers 0, 1, ..., n-1 each l times
 vector<int> gen_seq(int &l, int &n) {
     vector<int> seq = vector<int>(l * n);
     for (int i = 0; i < n; i++) {

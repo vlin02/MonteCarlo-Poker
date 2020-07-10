@@ -7,25 +7,16 @@
 #include "math.h"
 using namespace std;
 
-
-bool sortcol( const vector<double>& v1,
-              const vector<double>& v2 ) {
-    return v1[0] > v2[0];
-}
-
-//vector<string> suit = {"♣️1", "♦️2", "♥️3", "♠️4"};
 int main() {
     Simulator sim;
-    sim.load_table();
 
-    vector<int> my_hand = {142, 133};
-    vector<int> comm_hand = {141, 143, 32, 43, 91};
-    sim.my_hand = convert_hand(my_hand);
-    sim.comm_hand = convert_hand(comm_hand);
-    int N = 100000;
+    vector<vector<string>> known_hands = {{"Ad", "Kh"}}; // Poker hand pairs for each player 
+    vector<string> comm_hand = {"Ac", "Ah", "3d", "4h", "9c"}; // Between 0-5 cards available in the community hand
+
+    int N = 100000; // Number of simulations to run
 
     cout << "Simulating..." << endl;
-    double prop = sim.simulate(N);
-    double error = calc_error(prop, N);
-    printf("%.3f±%.3f%% chance of winning.\n", prop * 100, error * 100);
+
+    // Last parameter is optionally including more players, whose hands are unknown (random)
+    vector<vector<int>> results = sim.compute_probabilities(N, comm_hand, known_hands, 2);
 }

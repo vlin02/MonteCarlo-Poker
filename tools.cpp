@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "sparsepp/spp.h"
+#include <iterator>
 
 using namespace std;
 const string BASE = "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/";
@@ -48,24 +48,4 @@ vector<int> read_vect(const char *name){
         f.close();
     }
     return vect;
-}
-
-vector<int> map_to_vect(const spp::sparse_hash_map<int, int> &table){
-    vector<int> ret(table.size() * 2, 0);
-    int ix = 0;
-    for (const auto& [key, value]: table)
-    {
-        ret[ix] = key;
-        ret[ix + 1] = value;
-        ix += 2;
-    }
-    return ret;
-}
-
-spp::sparse_hash_map<int, int> vect_to_map(vector<int> vect){
-    spp::sparse_hash_map<int, int> table;
-    for (int i = 0; i < vect.size(); i += 2) {
-        table[vect[i]] = vect[i+1];
-    }
-    return table;
 }
