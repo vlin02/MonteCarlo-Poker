@@ -7,7 +7,7 @@ int main() {
 
     vector<vector<string>> known_hands = {{"Ad", "Kh"}, {"2c", "7d"}}; // Poker hand pairs for each player 
     vector<string> comm_hand = {}; // Between 0-5 cards available in the community hand
-    print_hand(convert_hand(comm_hand));
+    
     int N = 100000; // Number of simulations to run
 
     cout << "Simulating..." << endl;
