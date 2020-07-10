@@ -14,11 +14,7 @@ Accepts any number of player hands, including unknown hands, as well as a commun
 explanation of the inner-workings is at the bottom.
 
 ## Benchmarks
-Computational time spent running simulations increases linearly with total number of hands, as time complexity
-of the program is *O(N)* with regard to the number of simulations.
-
-Including more variable cards (less community cards or more random hands) will require more random card generation, 
-creating additional time delay. While significant, the delay should still be less than the simulation runtime.
+Computational time spent running simulations increases linearly with total number of hands. Including more variable cards (less community cards or more random hands) will require more random card generation, creating additional time delay.
 
 Reasonable inputs for **100k** simulations take between **1-2 sec**. for my (Macbook Pro 2.3 GHz Dual-Core Intel Core i5)
 
