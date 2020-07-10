@@ -9,7 +9,6 @@
 #include <iterator>
 
 using namespace std;
-const string BASE = "/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/";
 
 void print(vector<int> const &input) {
 std::copy(input.begin(),
@@ -27,7 +26,7 @@ ifstream::pos_type filesize(const char* filename)
 void write_vect(vector<int> vect, string name){
     fstream f;
     int* arr = &vect[0];
-    f.open(BASE + name, ios::out|ios::binary);
+    f.open(name, ios::out|ios::binary);
     if (f){
         f.write(reinterpret_cast<char*>(arr), vect.size() * 4);
         f.close();
@@ -38,7 +37,7 @@ void write_vect(vector<int> vect, string name){
 
 vector<int> read_vect(const char *name){
     fstream f;
-    string loc = BASE + name;
+    string loc = name;
     f.open(loc, ios::in|ios::binary);
     int fsize = filesize(loc.c_str());
     vector<int> vect(fsize/4);

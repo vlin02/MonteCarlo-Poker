@@ -1,6 +1,12 @@
 # MonteCarlo-Poker
 Flexible Texas Holdem Poker algorithm for calculating winning probabilities using fast Monte Carlo Simulation.
 
+Hopefully comming soon ...
+
+- % Distributions for each of the 10 possible hands
+- Improving random hand simulation w/ symmetry
+- Python extension?
+
 ## About
 Currently an exculsively Texas Holdem probability calculator, using random (MonteCarlo) simulation. 
 Takes advantage of a comprehensive, but compact (10MB), lookup table for fast simulation speed.
@@ -9,7 +15,7 @@ explanation of the inner-workings is at the bottom if you're **really** curious.
 
 ## Benchmarks
 Computational time spent running simulations increases linearly with total number of hands, as time complexity
-of the program is O(N) with regard to the number of simulations.
+of the program is *O(N)* with regard to the number of simulations.
 
 Including more variable cards (less community cards or more random hands) will require more random card generation, 
 creating additional time delay. While significant, the delay should still be less than the simulation runtime.
@@ -18,7 +24,7 @@ Reasonable inputs for **100k** simulations take between **1-2 sec**. for my (Mac
 
 ## Usage
 
-Load the Simulator
+Load the Simulator (Ensure lookup_tablev3.bin is in root, or change path in tools.cpp/read_vect)
 
     #include "simulator.h"
     Simulator sim;
@@ -47,7 +53,7 @@ Simulating...
 |2♣ 7♦ | 9.287 |  1.977|
 |?? ?? |19.075 |  2.564|
 
-^ Repeat last row **3x** for 3 random hands
+^ Last row represents an average of the unknown hands (theoretically have identical probabilities)
 
 Time elapsed: 1.77971s
 
@@ -58,15 +64,17 @@ MonteCarlo-poker acheives both at linear time.
 
 ## Random hand generation
 For a single simulation, random cards fill in the remaining community cards and random hands. Thus, it boils down to being able to efficiently
-generating random n (52 - cards from community and holes) choose k (# of random cards needed) combinatorials with no replacement. 
 
-Unfortunately I found no online solution, so I created my own. The procedure involves taking enough repitition of each of the n available cards
+generating random *n* (52 - cards from community and holes) choose *k* (# of random cards needed) combinatorials with no replacement. 
+
+Unfortunately I found no online solution, so I created my own. The procedure involves taking enough repitition of each of the *n* available cards
+
 and shuffling them into a random sequence. MonteCarlo Poker then iterates along the sequence to generate the samples, keeping track of the placement 
 of each of the n unique  cards to ensure each samples contains unique cards.
 
 ### Some math...
-The efficiency of this sequence-based algorithm is mostly because length of the sequence is barely greater than, but still suffices, to carry out
-the procedure above (for large N). In particular, if L = ceil(N * k) /n, MonteCarlo-Poker generates a (L * n)-length random sequence.
+The efficiency of this sequence-based algorithm is mostly thanks to the fact that the length of the sequence is provides just enough randomly shuffled cards
+to carry out the procedure described above (for large *N*). In particular, if L = *ceil(N x k) /n*, MonteCarlo-Poker generates a *n x (L + 1)*-length random sequence.
 
 ## Hand Evaluations
 MonteCarlo poker only needs to do 21 lookups (7 choose 5 cards) to determine the strength of a hand. Transitions between each 5 card combination

@@ -6,36 +6,16 @@
 
 #IncludeRegexTransform: 
 
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.h
-vector
--
-
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.h
-vector
--
-
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.cpp
+/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.cpp
+tools.h
+/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.h
 vector
 -
 iostream
 -
-algorithm
+fstream
 -
-simulator.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.h
-tools.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.h
-samples.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.h
-cards.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.h
-
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.h
-cards.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.h
-tools.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.h
-vector
+iterator
 -
 
 /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.h
