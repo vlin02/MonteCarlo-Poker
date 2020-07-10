@@ -5,7 +5,7 @@ Hopefully comming soon ...
 
 - % Distributions for each of the 10 possible hands
 - Improving random hand simulation w/ symmetry
-- Python extension?
+- Python extension w/ Pybind11?
 
 ## About
 Currently an exculsively Texas Holdem probability calculator, using random (MonteCarlo) simulation. 
