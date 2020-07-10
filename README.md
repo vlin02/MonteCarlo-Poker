@@ -81,7 +81,7 @@ MonteCarlo poker only needs to do 21 lookups (7 choose 5 cards) to determine the
 are also optimized, with inspiration from Heap's algorithm.
 
 The lookup table itself is a single array of size 2.6M (52 choose 5 cards), mapping every 5 card combination to a unique "score". A combinatorial 
-number system is leveraged, allowing for a dense one-to-one mapping of each combinations to a unique index in the table up to (52 choose 5). For the geeks,
+number system is leveraged, allowing for a dense one-to-one mapping of each combinations to a unique index in the table from 0 - 2598960 (52 choose 5). For the geeks,
 some basic DP using pascal's triangle was used to quickly create a combinatorial lookup table to convert each combination to a vector index :).
 
 Each score is calculated such that the lowest score represents the worst hand all the way ranging to the highest score representing the best hand. 
