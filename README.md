@@ -58,7 +58,7 @@ Simulating...
 Time elapsed: 1.77971s
 
 
-# How the numbers are CRUNCHED
+# How the numbers are crunched
 Fast poker simulations depend on two variables 1) time spent generating random samples 2) time spent evaluating winner of each sample.
 MonteCarlo-poker acheives both at linear time.
 
