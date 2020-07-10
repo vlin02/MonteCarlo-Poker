@@ -11,7 +11,7 @@ Hopefully comming soon ...
 Currently an exculsively Texas Holdem probability calculator, using random (MonteCarlo) simulation. 
 Takes advantage of a comprehensive, but compact (10MB), lookup table for fast simulation speed.
 Accepts any number of player hands, including unknown hands, as well as a community hand. A more detailed
-explanation of the inner-workings is at the bottom if you're **really** curious.
+explanation of the inner-workings is at the bottom.
 
 ## Benchmarks
 Computational time spent running simulations increases linearly with total number of hands, as time complexity
@@ -21,6 +21,8 @@ Including more variable cards (less community cards or more random hands) will r
 creating additional time delay. While significant, the delay should still be less than the simulation runtime.
 
 Reasonable inputs for **100k** simulations take between **1-2 sec**. for my (Macbook Pro 2.3 GHz Dual-Core Intel Core i5)
+
+Accuracy of the algorithm has been confirmed through comparisons with other open source projects.
 
 ## Usage
 
@@ -58,37 +60,31 @@ Simulating...
 Time elapsed: 1.77971s
 
 
-# How the numbers are crunched
+# Simulation Methods
 Fast poker simulations depend on two variables 1) time spent generating random samples 2) time spent evaluating winner of each sample.
 MonteCarlo-poker acheives both at linear time.
 
 ## Random hand generation
 For a single simulation, random cards fill in the remaining community cards and random hands. Thus, it boils down to being able to efficiently
-
 generating random *n* (52 - cards from community and holes) choose *k* (# of random cards needed) combinatorials with no replacement. 
 
-Unfortunately I found no online solution, so I created my own. The procedure involves taking enough repitition of each of the *n* available cards
-
+Unfortunately I found no online solution, so I developed my own. The procedure involves taking enough repitition of each of the *n* available cards
 and shuffling them into a random sequence. MonteCarlo Poker then iterates along the sequence to generate the samples, keeping track of the placement 
 of each of the n unique  cards to ensure each samples contains unique cards.
 
 ### Some math...
-The efficiency of this sequence-based algorithm is mostly thanks to the fact that the length of the sequence is provides just enough randomly shuffled cards
-to carry out the procedure described above (for large *N*). In particular, if L = *ceil(N x k) /n*, MonteCarlo-Poker generates a *n x (L + 1)*-length random sequence.
+The efficiency of this sequence-based algorithm in this use-case is mostly thanks to the fact that the sequence contains at most ~100 excess cards that are not used by the simulation, which is negligble for large N. In particular, if L = ceil(N x k) /n, MonteCarlo-Poker generates a n x (L + 1)-length random sequence.
 
 ## Hand Evaluations
-MonteCarlo poker only needs to do 21 lookups (7 choose 5 cards) to determine the strength of a hand. Transitions between each 5 card combination
+MonteCarlo poker performs 21 vector lookups (7 choose 5 cards) to determine the strength of a hand. Transitions between each 5 card combination
 are also optimized, with inspiration from Heap's algorithm.
 
-The lookup table itself is a single array of size 2.6M (52 choose 5 cards), mapping every 5 card combination to a unique "score". A combinatorial 
-number system is leveraged, allowing for a dense one-to-one mapping of each combinations to a unique index in the table from 0 - 2598960 (52 choose 5). For the geeks,
-some basic DP using pascal's triangle was used to quickly create a combinatorial lookup table to convert each combination to a vector index :).
+The lookup table used is a single array of size 2.6M (52 choose 5 cards), mapping every 5 card combination to a unique "score". A combinatorial 
+number system is leveraged, allowing for a dense one-to-one mapping of each combinations to a unique index in the table from 0 - 2598960 (52 choose 5).
 
-Each score is calculated such that the lowest score represents the worst hand all the way ranging to the highest score representing the best hand. 
-Thus, these scores can be used to quickly determine the best 5 card combination of the hand. The score-space is approximately 260M, so even the 
-largest score fits in an int32.
-
-That's it folks!
+Each score is calculated such that the lowest score represents the worst hand, all the way ranging to the highest score representing the best hand. 
+Thus, these scores can be used to quickly determine the best 5-card combination of a 7-card hand. The maximum score is approximately 260M, so all scores can be
+stored in an int32.
 
 
 

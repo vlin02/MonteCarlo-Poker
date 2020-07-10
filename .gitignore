@@ -3,4 +3,5 @@ archive
 .idea
 .vscode
 .history
+build/*
 **/.DS_Store
