@@ -153,22 +153,22 @@ vector<vector<int>> Simulator::calculate(int N, vector<int>comm_hand, vector<vec
 }
 
 void Simulator::print_results(int N, vector<vector<int>> hands, vector<vector<int>> results) {
-    float known_wins = 0;
     for (int i = 0; i < hands.size(); i++) {
         print_hand(hands[i]);
         format_result(N, results[i]);
-        known_wins += results[i][0];
     }
 
     int unknown = results.size() - hands.size();
-
     if (unknown > 0) {
         float ties = 0;
+        float wins = 0;
+        float factor = 100.0/N/unknown;
+
         for (int i=hands.size(); i < results.size(); i++){
+            wins += results[i][0];
             ties += results[i][1];
         }
-
-        printf("?? ?? %6.3f  %6.3f (x%d random hands)\n", (N - known_wins)*100/N/unknown, ties*100/N/unknown, unknown);
+        printf("?? ?? %6.3f  %6.3f (x%d random hands)\n", wins*factor, ties*factor, unknown);
     }
 }
 
