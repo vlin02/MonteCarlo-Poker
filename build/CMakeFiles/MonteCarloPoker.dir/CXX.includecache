@@ -10,25 +10,11 @@
 vector
 -
 
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.h
-vector
--
-
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.cpp
-vector
--
+/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/main.cpp
 iostream
--
-algorithm
 -
 simulator.h
 /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.h
-tools.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/tools.h
-samples.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/samples.h
-cards.h
-/Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/cards.h
 
 /Users/5apphire/Desktop/Programs/C++/MonteCarloPoker/simulator.h
 cards.h
