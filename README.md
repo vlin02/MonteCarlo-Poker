@@ -8,7 +8,7 @@ Hopefully comming soon ...
 - Python extension w/ Pybind11?
 
 ## About
-Currently an exculsively Texas Holdem probability calculator, using random (MonteCarlo) simulation. 
+Currently an exclusively Texas Holdem probability calculator, using random (MonteCarlo) simulation. 
 Takes advantage of a comprehensive, but compact (10MB), lookup table for fast simulation speed.
 Accepts any number of player hands, including unknown hands, as well as a community hand. A more detailed
 explanation of the inner-workings is at the bottom.
